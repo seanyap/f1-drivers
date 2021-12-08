@@ -7,15 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F1 Drivers</title>
   <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
+  <!-- defer the loading of the script until body is loaded -->
+  <script src="index.js" defer></script>
 </head>
 
 <body>
-  <main class="container">
-    <div id="card">
-      <img id="left" src="static/chevron-left.svg" alt="left" onclick="displayPrev()">
-      <img id="right" src="static/chevron-right.svg" alt="right" onclick="displayNext()">
-    </div>
+  <main id="main" class="container">
+    <img id="left" class="center" src="static/chevron-left.svg" alt="left" onclick="displayPrev()">
+    <img id="right" class="center" src="static/chevron-right.svg" alt="right" onclick="displayNext()">
   </main>
 </body>
 

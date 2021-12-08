@@ -1,6 +1,7 @@
-const drivers = 0;
+let driversUI = [];
+let driverOrder = 0;
 
-const card = document.getElementById("card");
+const main = document.getElementById("main");
 
 function displayNext() {
   console.log("next");
@@ -10,9 +11,34 @@ function displayPrev() {
   console.log("prev");
 }
 
-fetch(
-  "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=Lewis_Hamilton"
-)
+// pull in drivers images from wikiepedia api
+// image api "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=<driver-name>"
+
+// pull in drivers data using Ergast api
+fetch("https://ergast.com/api/f1/current/drivers.json")
   .then((res) => res.json())
-  .then((data) => (drivers = data["DriverTable"]["Drivers"]))
+  .then((data) => {
+    const drivers = data.MRData.DriverTable.Drivers;
+    console.log(drivers);
+    driversUI = drivers.map((driver) => {
+      const card = document.createElement("div");
+      card.setAttribute("id", "card");
+      card.setAttribute("class", "center");
+
+      const title = document.createElement("h1");
+      title.textContent = `${driver.givenName} ${driver.familyName}`;
+
+      const dob = document.createElement("p");
+      dob.textContent = driver.dateOfBirth;
+
+      const nationality = document.createElement("p");
+      nationality.textContent = driver.nationality;
+
+      const number = document.createElement("p");
+      number.textContent = driver.permanentNumber;
+
+      card.append(title, dob, nationality, number);
+      main.appendChild(card);
+    });
+  })
   .catch((err) => console.log(err));
