@@ -75,17 +75,17 @@ p {
   }
 
   .center {
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
   #title {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   #left,
   #right {
-    top: 90%;
+    top: 95%;
   }
 }
