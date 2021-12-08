@@ -81,7 +81,11 @@ p {
   }
 
   #title {
-    margin-top: 10px;
+    margin-top: 15px;
+  }
+
+  h1 {
+    margin-top: -10px;
   }
 
   #left,
