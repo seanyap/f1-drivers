@@ -68,10 +68,7 @@ function getDriversData() {
         const nationality = document.createElement("p");
         nationality.textContent = driver.nationality;
 
-        const number = document.createElement("p");
-        number.textContent = `#${driver.permanentNumber}`;
-
-        cardDesc.append(title, dob, nationality, number);
+        cardDesc.append(title, dob, nationality);
 
         card.appendChild(img);
         card.appendChild(cardDesc);
