@@ -12,7 +12,7 @@ body {
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: #ccc;
+  /* background-color: #ccc; */
 }
 
 .center {
@@ -22,17 +22,24 @@ body {
   transform: translate(-50%, -50%);
 }
 
+#title {
+  margin-top: 60px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
 #card {
   width: 350px;
   height: 500px;
   background-color: #fff;
   border-radius: 25px;
+  box-shadow: 0 5px 15px rgb(245, 245, 245, 0.3);
 }
 
-#card-desc {
+/* #card-desc {
   position: absolute;
   bottom: 0;
-}
+} */
 
 #left,
 #right {
@@ -49,13 +56,28 @@ body {
   left: 70%;
 }
 
+img {
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
 h1,
 p {
   text-align: center;
 }
 
-p:last-of-type {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+@media (max-width: 480px) {
+  #left,
+  #right {
+    top: 90%;
+  }
+
+  #left {
+  }
+
+  #right {
+  }
 }
