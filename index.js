@@ -4,11 +4,15 @@ let driverOrder = 0;
 const main = document.getElementById("main");
 
 function displayNext() {
-  console.log("next");
+  driversUI[driverOrder].style.zIndex = 0;
+  driverOrder = driverOrder + 1 >= driversUI.length ? 0 : driverOrder + 1;
+  driversUI[driverOrder].style.zIndex = 10;
 }
 
 function displayPrev() {
-  console.log("prev");
+  driversUI[driverOrder].style.zIndex = 0;
+  driverOrder = driverOrder - 1 <= 0 ? driversUI.length - 1 : driverOrder - 1;
+  driversUI[driverOrder].style.zIndex = 10;
 }
 
 // pull in drivers images from wikiepedia api
@@ -39,6 +43,10 @@ fetch("https://ergast.com/api/f1/current/drivers.json")
 
       card.append(title, dob, nationality, number);
       main.appendChild(card);
+      return card;
     });
+
+    // set first card to appear above all other card
+    driversUI[driverOrder].style.zIndex = "10";
   })
   .catch((err) => console.log(err));
