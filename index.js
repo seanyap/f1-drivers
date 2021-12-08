@@ -15,38 +15,70 @@ function displayPrev() {
   driversUI[driverOrder].style.zIndex = 10;
 }
 
-// pull in drivers images from wikiepedia api
-// image api "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=<driver-name>"
+function parseURL4DriverName(url) {
+  return url.split("/").pop();
+}
+
+function getDriverImageURL(url, callback) {
+  const driverName = parseURL4DriverName(url);
+
+  // pull in driver image from wikiepedia api
+  fetch(
+    "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" +
+      driverName
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      pageKey = Object.keys(data.query.pages).pop();
+      callback(data.query.pages[pageKey].original.source);
+    });
+}
 
 // pull in drivers data using Ergast api
-fetch("https://ergast.com/api/f1/current/drivers.json")
-  .then((res) => res.json())
-  .then((data) => {
-    const drivers = data.MRData.DriverTable.Drivers;
-    console.log(drivers);
-    driversUI = drivers.map((driver) => {
-      const card = document.createElement("div");
-      card.setAttribute("id", "card");
-      card.setAttribute("class", "center");
+function getDriversData() {
+  fetch("https://ergast.com/api/f1/current/drivers.json")
+    .then((res) => res.json())
+    .then((data) => {
+      const drivers = data.MRData.DriverTable.Drivers;
+      console.log(drivers);
 
-      const title = document.createElement("h1");
-      title.textContent = `${driver.givenName} ${driver.familyName}`;
+      driversUI = drivers.map((driver) => {
+        const card = document.createElement("div");
+        card.setAttribute("id", "card");
+        card.setAttribute("class", "center");
 
-      const dob = document.createElement("p");
-      dob.textContent = driver.dateOfBirth;
+        const img = document.createElement("img");
+        let imgURL;
+        getDriverImageURL(driver.url, (url) => (imgURL = url));
+        img.setAttribute("src", imgURL);
 
-      const nationality = document.createElement("p");
-      nationality.textContent = driver.nationality;
+        const cardDesc = document.createElement("div");
+        cardDesc.setAttribute("id", "card-desc");
 
-      const number = document.createElement("p");
-      number.textContent = driver.permanentNumber;
+        const title = document.createElement("h1");
+        title.textContent = `${driver.givenName} ${driver.familyName}`;
 
-      card.append(title, dob, nationality, number);
-      main.appendChild(card);
-      return card;
-    });
+        const dob = document.createElement("p");
+        dob.textContent = driver.dateOfBirth;
 
-    // set first card to appear above all other card
-    driversUI[driverOrder].style.zIndex = "10";
-  })
-  .catch((err) => console.log(err));
+        const nationality = document.createElement("p");
+        nationality.textContent = driver.nationality;
+
+        const number = document.createElement("p");
+        number.textContent = `#${driver.permanentNumber}`;
+
+        cardDesc.append(title, dob, nationality, number);
+        card.appendChild(cardDesc);
+
+        main.appendChild(card);
+        return card;
+      });
+
+      // set first card to appear above all other card
+      driversUI[driverOrder].style.zIndex = "10";
+    })
+    .catch((err) => console.log(err));
+}
+
+// main function call
+getDriversData();
