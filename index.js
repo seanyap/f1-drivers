@@ -21,11 +21,11 @@ function parseURL4DriverName(url) {
 
 function getDriverImageURL(url, callback) {
   const driverName = parseURL4DriverName(url);
-  const imgURL = "https://commons.wikimedia.org/w/api.php";
+  const imgURL = "https://en.wikipedia.org/w/api.php";
   const params =
     "?action=query&prop=pageimages&origin=*&format=json&piprop=original&titles=";
   const completeURL = imgURL + params + driverName;
-  // console.log(completeURL);
+  console.log(completeURL);
 
   // pull in driver image from wikiepedia api
   fetch(completeURL)
