@@ -6,4 +6,7 @@ including name, date of birth, and nationality.
 User can browse through the list of players styled to look like playing cards, which
 I drew inspiration from baseball cards.
 
+Below is a screenshot of the app
+<img src="./images/app-screenshot.png">
+
 Check the live deploy of the website [here](https://seanyap.github.io/f1-drivers/)
