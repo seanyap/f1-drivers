@@ -7,6 +7,6 @@ User can browse through the list of players styled to look like playing cards, w
 I drew inspiration from baseball cards.
 
 Below is a screenshot of the app
-<img src="./images/app-screenshot.png">
+<img height="300" src="./images/app-screenshot.png">
 
 Check the live deploy of the website [here](https://seanyap.github.io/f1-drivers/)
