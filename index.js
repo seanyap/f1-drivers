@@ -24,7 +24,7 @@ function getDriverImageURL(url, callback) {
 
   // pull in driver image from wikiepedia api
   fetch(
-    "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=" +
+    "https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&origin=*&format=json&piprop=original&titles=" +
       driverName
   )
     .then((res) => res.json())
