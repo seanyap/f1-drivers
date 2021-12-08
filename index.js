@@ -51,8 +51,10 @@ function getDriversData() {
 
         const img = document.createElement("img");
         let imgURL;
-        getDriverImageURL(driver.url, (url) => (imgURL = url));
-        img.setAttribute("src", imgURL);
+        getDriverImageURL(driver.url, (url) => {
+          imgURL = url;
+          img.setAttribute("src", imgURL);
+        });
 
         const cardDesc = document.createElement("div");
         cardDesc.setAttribute("id", "card-desc");
@@ -70,8 +72,9 @@ function getDriversData() {
         number.textContent = `#${driver.permanentNumber}`;
 
         cardDesc.append(title, dob, nationality, number);
-        card.appendChild(cardDesc);
 
+        card.appendChild(img);
+        card.appendChild(cardDesc);
         main.appendChild(card);
         return card;
       });
