@@ -23,3 +23,10 @@ branch, I will then have to merge the commits into main so it can be deployed.
 Having to perform this repeatedly is not very fun, therefore, I used GitHub Actions
 to listen to push events on the development branch. When it receives an event, it will
 automatically attempt to merge/integrate it into main for deployment.
+
+## GitHub Actions Workflow
+
+The configuration YAML file for the workflow can be found in the .github/workflows folder
+
+You can also view the history of workflow ran by GitHub Actions in the "Actions"
+tab above
